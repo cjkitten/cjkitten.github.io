@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Key System TitaniumS</title>
+</head>
+<body>
+	<div id="randomString"></div>
+
+	<script>
+		function generateRandomString(length) {
+			var result = '';
+			var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+			for (var i = 0; i < length; i++) {
+				result += characters.charAt(Math.floor(Math.random() * characters.length));
+			}
+
+			return result;
+		}
+
+		var randomString = generateRandomString(14);
+
+		// Send random string to Discord webhook
+		var webhookURL = 'https://discord.com/api/webhooks/1080764905227026502/uJa7tJfX0Flvm2pc1oyXhj9qCSQ-lgeVc93gOlt9LPwBKBzjoFyTKmTudzbGgNtk8pvJ';
+                var data = {
+			"content": "Key: " + randomString
+		};
+
+		fetch(webhookURL, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
+		.then(response => {
+			console.log('Message sent to Discord');
+		})
+		.catch(error => {
+			console.error('Error sending message to Discord:', error);
+		});
+
+		document.getElementById("randomString").innerHTML = "Key: " + randomString;
+	</script>
+</body>
+</html>
