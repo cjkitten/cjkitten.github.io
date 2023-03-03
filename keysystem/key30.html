@@ -1,39 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Key from a txt</title>
+	<title>Random Letters Generator</title>
 	<script>
-		function generateRandomLine() {
-			var xhr = new XMLHttpRequest();
-
-			var url = "https://cjkitten.github.io/keysystem/key30lettersrandombyCJKitten.txt";
-
-			xhr.open("GET", url);
-
-			xhr.responseType = "text";
-
-			xhr.onload = function() {
-				// If the request was successful
-				if (xhr.status === 200) {
-					var lines = xhr.response.split("\n");
-
-					var randomIndex = Math.floor(Math.random() * lines.length);
-
-					var randomLine = lines[randomIndex];
-
-					var output = document.getElementById("output");
-					output.innerHTML = randomLine;
-				}
-			};
-
-			xhr.send();
+		function generateRandomLetters() {
+			var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+			var randomLetters = '';
+			for (var i = 0; i < 30; i++) {
+				var randomIndex = Math.floor(Math.random() * letters.length);
+				randomLetters += letters.charAt(randomIndex);
+			}
+			document.getElementById('random-letters').innerHTML = randomLetters;
 		}
+		window.onload = function() {
+			generateRandomLetters();
+		};
 	</script>
 </head>
 <body>
-	<h1>meh CJKitten</h1>
-	<p>by meh</p>
-	<button onclick="generateRandomLine()">ClickME</button>
-	<p>Random line: <span id="output"></span></p>
+	<h1>Random Letters Generator</h1>
+	<p>Here are 30 random letters: <span id="random-letters"></span></p>
 </body>
 </html>
