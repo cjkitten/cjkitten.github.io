@@ -10,5 +10,6 @@ export default defineConfig({
 		// Enable React for the Algolia search component.
 		react(),
 	],
-	site: `https://cjkitten.github.io/docs`,
+	site: 'https://cjkitten.github.io/',
+	base: '/docs',
 });
