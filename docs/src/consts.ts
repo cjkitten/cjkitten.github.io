@@ -7,7 +7,7 @@ export const SITE = {
 export const OPEN_GRAPH = {
 	image: {
 		src: 'https://cjkitten.github.io/docs/public/CJKitten%20Documentation.png',
-		alt: 'A Life with a beautiful nature by your side.'	
+		alt: 'A Life with a beautiful nature by your side. CJKitten is in your side'	
 	},
 	twitter: 'astrodotbuild',
 };
