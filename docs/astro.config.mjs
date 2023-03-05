@@ -11,5 +11,5 @@ export default defineConfig({
 		react(),
 	],
 	site: 'https://cjkitten.github.io/',
-	base: '/docs',
+	base: '/pages',
 });
