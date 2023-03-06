@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RickRolled</title>
+    <style>
+      /* Set video as background */
+      body {
+        overflow: hidden;
+      }
+
+      #bg-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1;
+      }
+
+      img {
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="bg-video" autoplay loop muted playsinline>
+      <source src="https://cjkitten.github.io/video/rickyvid.mp4" type="video/mp4"> Your browser does not support the video tag.
+    </video>
+    <img id="follow" src="https://cjkitten.github.io/video/rickroll.gif" width="50" height="50">
+    <script>
+      var video = document.getElementById("bg-video");
+
+      document.addEventListener('mousemove', function(e) {
+        var follow = document.getElementById('follow');
+        var x = e.pageX - (follow.offsetWidth / 2);
+        var y = e.pageY - (follow.offsetHeight / 2);
+        follow.style.left = x + 'px';
+        follow.style.top = y + 'px';
+      });
+
+      document.addEventListener('click', function() {
+        video.muted = false;
+      });
+    </script>
+  </body>
+</html>
