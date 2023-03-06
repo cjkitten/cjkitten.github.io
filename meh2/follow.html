@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
     <title>Follow Cursor</title>
     <style>
       /* Set video as background */
@@ -61,7 +60,6 @@
       .popup-button:hover {
         background-color: #333;
       }
-
     </style>
     <script>
       function detectMobileDevice() {
@@ -81,6 +79,38 @@
           popup.appendChild(popupButton);
           document.body.appendChild(popup);
         }
+      }
+
+      function detectViewer() {
+        if (window.location.href.startsWith("file://")) {
+          document.getElementById("message").innerHTML = "Sorry, this page cannot be viewed using an HTML viewer. Please view this page in a web browser.";
+          showPopup();
+        }
+      }
+
+      function detectRightClick() {
+        document.addEventListener("contextmenu", function(e) {
+          e.preventDefault();
+          document.getElementById("message").innerHTML = "Sorry, right-click is disabled on this page. Please use the menu options to navigate.";
+          showPopup();
+        });
+      }
+
+      function showPopup() {
+        var popup = document.createElement("div");
+        popup.classList.add("popup");
+        var popupMessage = document.createElement("div");
+        popupMessage.classList.add("popup-message");
+        popupMessage.innerHTML = document.getElementById("message").innerHTML;
+        popup.appendChild(popupMessage);
+        var popupButton = document.createElement("a");
+        popupButton.classList.add("popup-button");
+        popupButton.innerHTML = "Back Home";
+        popupButton.href = "/";
+        popup.appendChild(popupButton);
+        document.body.appendChild(popup);
+        document.body.style.overflow = "hidden";
+        document.querySelector("html").classList.add("no-scroll");
       }
     </script>
   </head>
