@@ -21,6 +21,8 @@
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
   <link rel="preload" as="style" href="assets/cjkitten/css/cjk-additional.css"><link rel="stylesheet" href="assets/cjkitten/css/cjk-additional.css" type="text/css">
+  <link rel="stylesheet" href="https://unpkg.com/gitment/style/default.css">
+  <script src="https://unpkg.com/gitment/dist/gitment.browser.js"></script>
 
   
   
@@ -158,6 +160,19 @@
             </div>
         </div>
     </div>
+  <div id="comments"></div>
+  <script>
+    const gitment = new Gitment({
+      owner: 'cjkitten',
+      repo: 'cjkitten.github.io/meh',
+      oauth: {
+        client_id: 'a084a6cfd50fd7271503',
+        client_secret: '6d8b7c20f3a13bda79f84c8495d0278f7619b18c',
+        redirect_uri: 'https://cjkitten.github.io/meh',
+      },
+    });
+    gitment.render('comments');
+  </script>
 </section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/embla/embla.min.js"></script>  <script src="assets/embla/script.js"></script>  <script src="assets/theme/js/script.js"></script>  
   
   
