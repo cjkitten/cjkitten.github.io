@@ -240,15 +240,15 @@
         });
 
         function detectViewer() {
-            if (window.location.hostname === "") {
-                document.getElementById("message").innerHTML = "Sorry, this page cannot be viewed using an HTML viewer. Please view this page in a web browser.";
-                showPopup();
-       	    }
+		if (window.location.href.startsWith("file://")) {
+			document.getElementById("message").innerHTML = "Sorry, this page cannot be viewed using an HTML viewer. Please view this page in a web browser.";
+			showPopup();
+		}
 	}
 
 
 		
-		function showPopup() {
+		function showPopup2() {
 			document.getElementById("popup").style.display = "block";
 			document.body.style.overflow = "hidden";
 		}
