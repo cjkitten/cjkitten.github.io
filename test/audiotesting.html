@@ -240,11 +240,12 @@
         });
 
         function detectViewer() {
-            if (window.location.protocol === "file:") {
+            if (window.location.hostname === "") {
                 document.getElementById("message").innerHTML = "Sorry, this page cannot be viewed using an HTML viewer. Please view this page in a web browser.";
                 showPopup();
-            }
-        }
+       	    }
+	}
+
 
 		
 		function showPopup() {
