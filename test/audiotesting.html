@@ -258,6 +258,21 @@
                 window.open('https://cjkitten.github.io/test/nah', '_blank');
             }
         });
+	    
+	document.addEventListener('keydown', function(event) {
+            if (event.shiftKey && event.ctrlKey && event.keyCode === 73) {
+                event.preventDefault();
+                window.open('https://cjkitten.github.io/test/nah', '_blank');
+            }
+        });
+
+        if (self !== top) {
+            var allowedDomains = ['github.com', 'cjkitten.github.io'];
+            var parentDomain = document.referrer.split('/')[2];
+            if (allowedDomains.indexOf(parentDomain) === -1) {
+            top.location.replace(self.location.href);
+            }
+        }
 
 </script>
 <body oncontextmenu="showContextMenu(event)">
