@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Minecraft Server Status</title>
+    <style>
+      @font-face {
+        font-family: 'Minecraft';
+        src: url('https://cjkitten.github.io/servergames/minecraft_font.woff2') format('woff2'),
+             url('https://cjkitten.github.io/servergames/minecraft_font.woff') format('woff');
+      }
+      
+      body {
+        font-family: 'Minecraft', sans-serif;
+        background-image: url('https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c1/Dirt_background_JE2.png/revision/latest?cb=20210507124914');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        color: #fff;
+        margin: 0;
+      }
+
+      html, body {
+        height: 100%;
+      }
+
+      
+      h1 {
+        color: #ffffff;
+        text-shadow: 2px 2px #000000;
+        font-size: 32px;
+        margin: 0;
+        text-align: center;
+        padding-top: 20px;
+      }
+
+      h2 {
+        color: #ffffff;
+        text-shadow: 2px 2px #000000;
+        font-size: 27px;
+        margin: 0;
+        text-align: center;
+        padding-top: 20px;
+      }
+      
+      #status {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #000000;
+        border-radius: 5px;
+        width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #menu {
+        margin-top: 80px;
+        text-align: center;
+      }
+
+      #server-list {
+        width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #000000;
+        border-radius: 5px;
+        padding: 20px;
+      }
+
+      #server-list a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 24px;
+        display: block;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px #000000;
+      }
+
+      #server-list a:hover {
+        color: #fff;
+      }
+      .transparent-button {
+        position: absolute;
+        bottom: 10px; 
+        left: 10px; 
+        background-color: transparent;
+        border: none;
+        color: #ffffff; 
+        cursor: pointer;
+        font-size: 16px; 
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        border-radius: 4px;
+        border: 2px solid #ffffff; 
+      }
+      .transparent-button:hover {
+        background-color: #ffffff; 
+        color: #fff; 
+      }
+
+      .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        max-height: 500px;
+        overflow-y: auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        padding: 20px;
+        z-index: 999;
+        display: none;
+      }
+
+      .popup-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #000000;
+      }
+
+      .popup-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #000000;
+      }
+
+      .popup-close {
+        background-color: transparent;
+        border: none;
+        color: #000;
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      .popup-close:hover {
+        color: #f00;
+      }
+
+      .popup-body p {
+        margin-bottom: 10px;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #000;
+      }
+      .transparent-button2 {
+        position: absolute;
+        bottom: 10px; 
+        right: 10px; 
+        background-color: transparent;
+        border: none;
+        color: #ffffff; 
+        cursor: pointer;
+        font-size: 16px; 
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CJKitten MC Status</h1>
+      <div id="menu">
+        <div id="server-list">
+          <a href="minecraft://cjkitten.aternos.me">Open Minecraft</a>
+        </div>
+      </div>
+    
+
+    <div id="status">
+      <h2>Server Status</h2>
+      <p>Server IP: cjkitten.aternos.me</p>
+      <p>Status: <span id="status_text">Loading...</span></p>
+      <p>Online Players: <span id="online_players">0</span></p>
+    </div>
+    <div id="menu">
+      <section id="description">
+        <h2>About CJKitten's Minecraft Server</h2>
+        <p>My server has no rules just enjoy your visit! The server is hosted at Aternos, me (owner) will be online sometimes.</p>
+        <h2>Contents</h2>
+        <p>- Any Versions</p>
+        <p>- Available at Bedrock/Pocket Edition</p>
+        <p>- No admins</p>
+      </section>
+    </div>
+
+    <button id="faq-button" class="transparent-button">FAQ?</button>
+    <button class="transparent-button2">
+        <a href="mailto:cjkprivate@courvix.com">Contact Me</a>
+    </button>
+
+    <div id="popup" class="popup">
+      <div class="popup-header">
+        <div class="popup-title">Frequently Asked Questions</div>
+        <button id="popup-close" class="popup-close">&times;</button>
+      </div>
+      <div class="popup-body">
+        <p>Q: What version do i use when joining this server with BE/PE?</p>
+        <p>A: The Only Version is required to join here is 1.19.30 to 1.19.71 the version will change if the geyser plugin will update.</p>
+        
+        <p>Q: I copied the server ip address and paste it on my mcbe/pe and it says "unable to join".</p>
+        <p>A: Keep the server address just change the port to 30153 so it could work properly.</p>
+        
+        <p>Q: What are the system requirements for this application?</p>
+        <p>A: The system requirements for this application are a modern web browser (such as Chrome, Firefox, or Safari) and an internet connection.</p>
+      </div>
+    <script>
+      const faqButton = document.getElementById('faq-button');
+      const popup = document.getElementById('popup');
+      const popupClose = document.getElementById('popup-close');
+      const popupHeader = document.querySelector('.popup-header');
+
+      faqButton.addEventListener('click', function() {
+        popup.style.display = 'block';
+      });
+
+      popupClose.addEventListener('click', function() {
+        popup.style.display = 'none';
+      });
+
+      popupHeader.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+      });
+
+      document.addEventListener('mouseup', function() {
+        isDragging = false;
+      });
+
+      document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+          const deltaX = e.clientX - lastX;
+          const deltaY = e.clientY - lastY;
+          const popup = document.querySelector('.popup');
+          const newX = parseInt(window.getComputedStyle(popup).getPropertyValue('left')) + deltaX;
+          const newY = parseInt(window.getComputedStyle(popup).getPropertyValue('top')) + deltaY;
+          popup.style.left = newX + 'px';
+          popup.style.top = newY + 'px';
+          lastX = e.clientX;
+          lastY = e.clientY;
+        }
+      });
+
+    </script>
+    <script>
+      const serverIP = "cjkitten.aternos.me";
+      const statusText = document.getElementById("status_text");
+      const onlinePlayers = document.getElementById("online_players");
+    
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          try {
+            const data = JSON.parse(xhr.responseText);
+            if (data.online) {
+              statusText.innerText = "Online";
+              onlinePlayers.innerText = data.players.online;
+            } else {
+              statusText.innerText = "Offline";
+            }
+          } catch (error) {
+            console.error(error);
+            statusText.innerText = "Error";
+          }
+        } else if (xhr.readyState === 4) {
+          console.error(`Failed to get server status: HTTP status ${xhr.status}`);
+          statusText.innerText = "Error";
+        }
+      };
+      xhr.open("GET", `https://api.mcsrvstat.us/2/${serverIP}`);
+      xhr.send();
+    </script>    
+  </body>
+</html>
