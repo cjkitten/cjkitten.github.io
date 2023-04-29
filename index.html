@@ -1,12 +1,110 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Loading...</title>
-    <link rel="shortcut icon" href="assets/images/d8ece898dfae4e7204650a0f3f804676.jpg" type="image/x-icon">
+<head>
+	<title>CJKitten</title>
+	<link rel="shortcut icon" href="assets/images/d8ece898dfae4e7204650a0f3f804676.jpg" type="image/x-icon">
     <meta name="description" content="Cjkiiten GithubPages">
     <meta property="og:description" content="Cjkiiten GithubPages">
     <meta property="og:title" content="CJKitten">
     <meta property="og:image" content="https://cjkitten.github.io/assets/images/oglinkmeta.png">
-    <meta http-equiv="refresh" content="10;URL=https://cjkitten.github.io/home">
-  </head>
+	<meta http-equiv="refresh" content="9; url=https://cjkitten.github.io/home">
+	<style type="text/css">
+		body {
+			background-color: #000;
+			color: #fff;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 16px;
+		}
+		.loading {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 300px;
+			height: 20px;
+			background-color: #4e4e4e;
+			border-radius: 10px;
+			overflow: hidden;
+			animation: fade-in 1s ease-out forwards;
+		}
+		.loading .bar {
+			height: 100%;
+			background-color: #ffffff;
+			width: 0%;
+			transition: width 4s ease-in-out;
+			animation: fade-in 1s ease-out forwards;
+		}
+		.hidden {
+			display: none;
+		}
+		.message {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			font-size: 24px;
+			animation: fade-in 1s ease-out forwards;
+		}
+
+		
+		@keyframes fade-in {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+		
+		@keyframes fade-out {
+			from {
+				opacity: 1;
+			}
+			to {
+				opacity: 0;
+				display: none;
+			}
+		}
+	</style>	
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+	<script type="text/javascript">
+		window.addEventListener("load", function() {
+			var loading = document.querySelector(".loading");
+			var bar = document.querySelector(".bar");
+			var message = document.querySelector(".message");
+			
+			setTimeout(function() {
+				loading.classList.add("hidden");
+				loading.classList.add("fade-out");
+				message.classList.remove("hidden");
+				message.classList.add("fade-in");
+				setTimeout(function() {
+					message.classList.add("fade-out");
+					setTimeout(function() {
+						window.location.href = "https://cjkitten.github.io/home";
+					}, 1000);
+				}, 9000);
+			}, 8000);
+			
+			var percent = 0;
+			var interval = setInterval(function() {
+				if (percent >= 100) {
+					clearInterval(interval);
+				} else {
+					percent += 1;
+					bar.style.width = percent + "%";
+				}
+			}, 40);
+		});
+	</script>
+</head>
+<body>
+	<div class="loading">
+		<div class="bar"></div>
+	</div>
+	<div class="message hidden">
+		Welcome, User!
+	</div>
+</body>
 </html>
