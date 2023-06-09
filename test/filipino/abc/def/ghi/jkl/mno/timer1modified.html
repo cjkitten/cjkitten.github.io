@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Countdown to July 7, 2023</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        font-family: 'Gotham', sans-serif;
+        text-align: center;
+      }
+      h1 {
+        font-size: 3rem;
+        margin-top: 2rem;
+      }
+      h2 {
+        font-size: 1rem;
+        margin-top: 1rem;
+      }
+      h3 {
+        font-size: 2rem;
+        margin-top: 2rem;
+      }
+      @font-face {
+        font-family: 'Gotham';
+        src: url('https://cjkitten.github.io/test/filipino/abc/def/ghi/jkl/mno/Gotham-Thin.woff2') format('woff2'),
+             url('https://cjkitten.github.io/test/filipino/abc/def/ghi/jkl/mno/Gotham-Thin.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      #countdown-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+        width: 80vw;
+        margin: auto;
+        margin-top: 2rem;
+        background-color: white;
+        border: 5px solid black;
+      }
+      #countdown {
+        font-size: 4vw;
+        margin: 0;
+        color: black;
+      }
+      #popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+      #countdown-box2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+        width: 80vw;
+        margin: auto;
+        margin-top: 2rem;
+        background-color: white;
+        border: 5px solid black;
+      }
+      #countdown2 {
+        font-size: 4vw;
+        margin: 0;
+        color: black;
+      }
+      #popup2 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+      #popup-text {
+        font-size: 3rem;
+        margin: 0;
+      }
+      #current-time {
+        font-size: 2rem;
+        margin-top: 2rem;
+      }
+    </style>
+    <script>
+      if (window.location.href === "https://cjkitten.github.io/test/filipino/abc/def/ghi/jkl/mno/timer/") {
+        alert("This code only works on the specified website");
+      } else {
+        document.body.innerHTML = "404";
+      }
+
+    </script>
+  </head>
+  <body>
+    <h1>Countdown to July 7, 2023</h1>
+    <h2>Counting down to the end of the 2022-2023 school year and start of school year 2023-2024, by codie.</h2>
+
+    <div id="countdown-box">
+      <p id="countdown"></p>
+    </div>
+
+    <div id="popup">
+      <p id="popup-text" onclick="closePopup()">wala na finish na</p>
+    </div>
+
+    <h3>Countdown to August 28, 2023</h3>
+
+    <div id="countdown-box2">
+      <p id="countdown2"></p>
+    </div>
+
+    <p id="current-time"></p>
+    
+    <div id="popup2">
+      <p id="popup-text2" onclick="closePopup2()">start ulet</p>
+    </div>
+
+    <p id="current-time"></p>
+
+    <h2>If the countdown finishes click the text so it would disappear.</h2>
+
+    <script>
+      var countDownDate = new Date("July 7, 2023 00:00:00").getTime();
+      var countDownDate2 = new Date("August 28, 2023 00:00:00").getTime();
+
+      var x = setInterval(function() {
+
+        var now = new Date().getTime();
+
+        var distance = countDownDate - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("countdown-box").style.display = "none";
+          document.getElementById("popup").style.display = "flex";
+        }
+
+        var now2 = new Date().getTime();
+        var distance2 = countDownDate2 - now2;
+        var days2 = Math.floor(distance2 / (1000 * 60 * 60 * 24));
+        var hours2 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
+        document.getElementById("countdown2").innerHTML = days2 + "d " + hours2 + "h " + minutes2 + "m " + seconds2 + "s ";
+        if (distance2 < 0) {
+          clearInterval(x);
+          document.getElementById("countdown-box2").style.display = "none";
+          document.getElementById("popup2").style.display = "flex";
+        }
+
+        var nowStr = new Date(now).toLocaleTimeString();
+        document.getElementById("current-time").innerHTML = "Current time: " + nowStr;
+      }, 100);
+
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+
+      function closePopup2() {
+        document.getElementById("popup2").style.display = "none";
+      }
+    </script>
+  </body>
+  <script>
+  if (window.console) {
+    console.log("%cHello User!", "font-size: 50px; font-weight: bold; color: red;");
+    console.log("%cTrying to change or steal something?. Well it's not good, stealing my code would not work for your website tho.", "font-size: 20px; font-weight: bold; color: white;");
+  }
+  
+  
+  </script>
+</html>
