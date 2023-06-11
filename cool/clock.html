@@ -116,8 +116,8 @@
 
         .popup-container2 {
             position: fixed;
-            top: 95%;
-            left: 5%;
+            top: 55%;
+            left: 50%;
             transform: translate(-50%, -50%);
             background-color: transparent;
             display: none;
@@ -139,6 +139,13 @@
             font-size: 2rem;
             margin: 0;
             text-align: center;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #current-time {
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+            }
         }
     </style>
 </head>
