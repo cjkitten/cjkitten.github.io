@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Smooth Clock</title>
+    <link rel="shortcut icon" href="https://cjkitten.github.io/cool/clock.png" type="image/x-icon">
+    <meta property="og:image" content="https://cjkitten.github.io/cool/smoothclock.png">
+    <meta property="og:description" content="Aesthetic Clock">
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        font-family: 'Gotham', sans-serif;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        transition: background-color 0.5s ease-in-out;
+      }
+      h1 {
+        font-size: 3rem;
+        margin-top: 2rem;
+        cursor: pointer;
+      }
+      h2 {
+        font-size: 1rem;
+        margin-top: 1rem;
+      }
+      h3 {
+        font-size: 2rem;
+        margin-top: 2rem;
+      }
+      @font-face {
+        font-family: 'Gotham';
+        src: url('https://cjkitten.github.io/test/filipino/abc/def/ghi/jkl/mno/Gotham-Thin.woff2') format('woff2'),
+             url('https://cjkitten.github.io/test/filipino/abc/def/ghi/jkl/mno/Gotham-Thin.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      #current-time {
+        font-size: 5rem;
+        margin-top: 2rem;
+      }
+
+      .bottom-right-text {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 1rem;
+      }
+
+      .transparent-button {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 50px;
+        height: 50px;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .popup-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 560px;
+        height: 315px;
+        background-color: black;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .popup-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .popup-content iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .popup {
+         position: fixed;
+         top: 70%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         padding: 20px;
+         background-color: #272727;
+         border: 1px solid #ccc;
+         z-index: 9999;
+       }
+    </style>
+  </head>
+  <body onload="togglePopupAutomatic()">
+    <p id="current-time" onclick="changeColor()"></p>
+    <p class="bottom-right-text">by codie</p>
+    <button class="transparent-button" onclick="togglePopup()"></button>
+
+    <div class="popup-container" id="popupContainer">
+      <div class="popup-content">
+        <iframe src="https://www.youtube-nocookie.com/embed/ldDtjQkLsss?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div id="popup" class="popup">
+        <h2>Tips:</h2>
+        <p>1. Click the Top left for music.</p>
+        <p>2. F or F11 to Fullscreen.</p>
+    </div>
+      
+    
+    <script>
+      function updateCurrentTime() {
+        var now = new Date();
+        var currentTimeString = now.toLocaleTimeString();
+        var body = document.body;
+        var timeElement = document.getElementById("current-time");
+        var bottomTextElement = document.querySelector('.bottom-right-text');
+
+        timeElement.textContent = " " + currentTimeString;
+
+        if (body.style.backgroundColor === "white") {
+          timeElement.style.color = "black";
+          bottomTextElement.style.color = "black";
+        } else {
+          timeElement.style.color = "white";
+          bottomTextElement.style.color = "white";
+        }
+      }
+
+      function changeColor() {
+        var body = document.body;
+        var switchElement = document.querySelector('.switch');
+        var text = document.querySelector('#change-text');
+        var bottomTextElement = document.querySelector('.bottom-right-text');
+
+        if (body.style.backgroundColor === "white") {
+          body.style.backgroundColor = "";
+          switchElement.style.color = "black";
+          text.style.color = "#000";
+          bottomTextElement.style.color = "black";
+        } else {
+          body.style.backgroundColor = "white";
+          switchElement.style.color = "white";
+          text.style.color = "#fff";
+          bottomTextElement.style.color = "white";
+        }
+      }
+
+      function togglePopup() {
+        var popupContainer = document.getElementById("popupContainer");
+        if (popupContainer.style.display === "none") {
+          popupContainer.style.display = "block";
+          setTimeout(function() {
+            popupContainer.style.opacity = "1";
+          }, 10);
+        } else {
+          popupContainer.style.opacity = "0";
+          setTimeout(function() {
+            popupContainer.style.display = "none";
+          }, 300);
+        }
+      }
+
+      function requestFullscreen() {
+        var elem = document.documentElement;
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+      }
+
+      function exitFullscreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
+
+      document.addEventListener("keydown", function(event) {
+        if (event.key === "F" || event.key === "f") {
+          requestFullscreen();
+        }
+
+        if (event.key === "Escape" || event.key === "Esc") {
+          exitFullscreen();
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", function() {
+            var popup = document.getElementById("popup");
+            
+            setTimeout(function() {
+                popup.style.display = "none";
+            }, 10000);
+
+      });
+      
+      setInterval(updateCurrentTime, 1000);
+    </script>
+  </body>
+</html>
