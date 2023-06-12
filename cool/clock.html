@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Smooth Clock</title>
     <link rel="shortcut icon" href="https://cjkitten.github.io/cool/clock.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
     <meta property="og:image" content="https://cjkitten.github.io/cool/smoothclock.png">
     <meta property="og:description" content="Aesthetic Clock">
     <style>
@@ -19,6 +20,7 @@
             height: 100vh;
             margin: 0;
             transition: background-color 0.5s ease-in-out;
+            overflow: hidden;
         }
 
         h1 {
@@ -139,7 +141,31 @@
             font-size: 2rem;
             margin: 0;
             text-align: center;
-        }
+        }
+    
+        #fullscreen-button {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 50px;
+            height: 50px;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 768px) {
+            #fullscreen-button {
+               display: block;
+            }
+        }
+    
+        @media not all and (min-resolution:.001dpcm) { /* Ignore screens with resolution less than 0.1dpi (e.g., desktops) */
+        @supports (-webkit-touch-callout: none) and (-webkit-user-select: none) { /* Check if it's a touch-enabled device (iOS/Android) */
+            #fullscreen-button {
+               pointer-events: none;
+            }
+         }
+      }
     </style>
 </head>
 <body onload="togglePopupAutomatic()">
@@ -148,6 +174,8 @@
     <button class="transparent-button" onclick="togglePopup()"></button>
 
     <button class="transparent-button2" onclick="togglePopup2()"></button>
+
+    <button id="fullscreen-button" onclick="requestFullscreen()"></button>
 
     <div id="popupContainer2" class="popup-container2">
         <div class="popup2">
