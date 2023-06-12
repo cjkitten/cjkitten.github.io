@@ -174,7 +174,7 @@
 
     <button class="transparent-button2" onclick="togglePopup2()"></button>
 
-    <button id="fullscreen-button" onclick="requestFullscreen()"></button>
+    <button id="fullscreen-button" onclick="toggleFullscreen()"></button>
 
     <div id="popupContainer2" class="popup-container2">
         <div class="popup2">
@@ -317,5 +317,31 @@
 
         setInterval(updateCurrentTime, 100);
     </script>
+    <script>
+    function toggleFullscreen() {
+      if (!document.fullscreenElement && !document.mozFullScreenElement &&
+        !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+          document.documentElement.msRequestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+    }
+  </script>
 </body>
 </html>
